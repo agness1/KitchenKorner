@@ -3,8 +3,7 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-<div class="w-4/5 m-auto text-center">
-<h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
+<div class="">
 
  {{ form_errors(registrationForm) }}
 
@@ -13,7 +12,7 @@
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }}
-        <button type="submit" class="btn">Register</button>
+        <button type="submit" class="">Register</button>
     {{ form_end(registrationForm) }}
 
 </div>
