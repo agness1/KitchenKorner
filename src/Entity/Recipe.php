@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\RecipeRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RecipeRepository::class)]
 class Recipe
@@ -14,21 +15,49 @@ class Recipe
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 2,
+        max: 255,
+        minMessage: 'The name must contain at least {{ limit }} characters.',
+        maxMessage: 'Name cannot be longer than {{ limit }} characters',
+    )]
     private ?string $name = null;
 
     #[ORM\ManyToOne(inversedBy: 'recipes')]
     private ?User $user = null;
 
     #[ORM\Column(length: 700)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 2,
+        max: 700,
+        minMessage: 'Your instruction must be at least {{ limit }} characters long',
+        maxMessage: 'Your instruction cannot be longer than {{ limit }} characters',
+    )]
     private ?string $instruction = null;
 
     #[ORM\ManyToOne(inversedBy: 'recipes')]
+    #[Assert\NotBlank]
     private ?Category $category = null;
 
     #[ORM\Column(length: 300)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 2,
+        max: 300,
+        minMessage: 'Your ingredients must be at least {{ limit }} characters long',
+        maxMessage: 'Your ingredients cannot be longer than {{ limit }} characters',
+    )]
     private ?string $ingredients = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Image(
+        minWidth: 200,
+        maxWidth: 400,
+        minHeight: 200,
+        maxHeight: 400,
+    )]
     private ?string $imagePath = null;
 
     public function getId(): ?int

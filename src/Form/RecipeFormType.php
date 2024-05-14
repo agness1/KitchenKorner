@@ -17,15 +17,22 @@ class RecipeFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class)
-            ->add('instruction', TextAreaType::class)
-            ->add('ingredients', TextAreaType::class)
+            ->add('name', TextType::class, [
+                'required' => false
+            ])
+            ->add('instruction', TextAreaType::class, [
+                'required' => false
+            ])
+            ->add('ingredients', TextAreaType::class, [
+                'required' => false
+            ])
             ->add('imagePath', FileType::class, array(
                 'required' => false,
                 'mapped' => false
             ))
             ->add('category', EntityType::class, [
                 'class' => Category::class,
+                'required' => false,
                 'choice_label' => 'name',
             ])
         ;

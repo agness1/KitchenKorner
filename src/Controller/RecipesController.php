@@ -49,9 +49,7 @@ class RecipesController extends AbstractController
             return $this->redirect('/login');
         }
         $recipe = new Recipe();
-        $user = $this->getUser();
         $recipe->setUser($user);
-
         $form = $this->createForm(RecipeFormType::class, $recipe);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -76,7 +74,7 @@ class RecipesController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
         return $this->render('recipes/create.html.twig', [
-            'form' => $form->createView()
+            'form' => $form,
         ]);
     }
 
@@ -106,13 +104,12 @@ class RecipesController extends AbstractController
     }
 
     #[Route('/recipes/delete/{id}', methods: ['GET', 'DELETE'], name: 'delete_recipe')]
-    public function delete($id, Request $request): Response
+    public function delete($id): Response
     {
         $user = $this->security;
         $recipe = $this->recipeRepository->find($id);
         $this->em->remove($recipe);
         $this->em->flush();
-
         return $this->redirectToRoute('show_user_recipe', ['userId' => $user->getId()]);
     }
 
