@@ -161,4 +161,16 @@ class RecipesController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+    #[Route('/recipes/category/{categoryId}', name:'category', methods: ['GET'])]
+    public function showRecipesByCategory($categoryId): Response 
+    {
+        $categories = $this->categoryRepository->findAll();
+        $recipes = $this->recipeRepository->findBy(['category' => $categoryId]);
+
+        return $this->render('home/home.html.twig', [
+            'recipes' => $recipes,
+            'categories' => $categories
+        ]);
+    }
 }

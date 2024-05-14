@@ -3,7 +3,7 @@
 {% block body %}
 <a href="/recipe/create" class="text-red-700">Add new recipe</a>
 {% for category in categories %}
- <p>{{ category.name}}</p>
+ <a href='/recipes/category/{{category.id}}'>{{ category.name}}</a>
 </a>
 {% endfor %}
 
