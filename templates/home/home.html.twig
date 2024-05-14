@@ -1,6 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<a href="/recipe/create" class="text-red-700">Add new recipe</a>
+{% for category in categories %}
+ <p>{{ category.name}}</p>
+</a>
+{% endfor %}
 
+{% for recipe in recipes %}
+<a href="/recipes/{{recipe.id}}">
+ <img
+ src="{{ recipe.imagePath }}"
+ alt=""
+ class="shadow-xl rounded-md"
+ />
+ <p>{{ recipe.name }}</p>
+ <p>{{ recipe.category.getName()}}</p>
+</a>
+   
+{% endfor %}
 
 {% endblock %}

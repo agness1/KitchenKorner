@@ -1,1 +1,21 @@
 {% extends 'base.html.twig' %}
+
+{% block body %}
+
+{% for recipe in recipes %}
+ <div>
+     <a>
+     <p>{{recipe.name}}</p>
+     <img
+     src="{{ recipe.imagePath }}"
+     alt=""
+     class="shadow-xl rounded-md"
+     />
+     </a>
+     <a href="/recipes/delete/{{recipe.id}}">Delete</a>
+     <a href="/recipes/edit/{{recipe.id}}">Update</a>
+ </div>
+
+{% endfor %}
+
+{% endblock %}

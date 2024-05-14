@@ -11,6 +11,8 @@
             {% block importmap %}{{ importmap('app') }}{% endblock %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script>
     </head>
     <body class="">
     {% block header %}
@@ -18,12 +20,16 @@
      <nav class="bg-gray-800 p-6">
         <div class="container mx-auto flex justify-between items-center">
             <div>
-                <a href="#" class="text-white text-lg font-bold">Kitchen Korner</a>
+                <a href="/" class="text-white text-lg font-bold">Kitchen Korner</a>
             </div>
             <div>
                 <ul class="flex space-x-4">
-                    <li><a href="#" class="text-white hover:text-gray-300"></a></li>
-                    <li><a href="#" class="text-white hover:text-gray-300"></a></li>
+                {% if app.user %}
+                <li><a href="/user-recipes/{{app.user.id}}" class="text-white hover:text-gray-300">See your recipes</a></li>
+                {% endif %}
+                    <li><a href="/login" class="text-white hover:text-gray-300">Login</a></li>
+                    <li><a href="/logout" class="text-white hover:text-gray-300">Logout</a></li>
+                    <li><a href="/Register" class="text-white hover:text-gray-300">Register</a></li>
                 </ul>
             </div>
         </div>
