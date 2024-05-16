@@ -81,10 +81,10 @@ class RecipesController extends AbstractController
     #[Route('/recipes/{id}', name: 'show_recipe', methods: ['GET'])]
     public function show($id): Response
     {
-        $recipes = $this->recipeRepository->find($id);
+        $recipe = $this->recipeRepository->find($id);
 
         return $this->render('recipes/details.html.twig', [
-            'recipes' => $recipes
+            'recipe' => $recipe
         ]);
     }
 
@@ -156,7 +156,7 @@ class RecipesController extends AbstractController
             }
         }
 
-        return $this->render('recipes/update.html.twig', [
+        return $this->render('recipes/create.html.twig', [
             'recipe' => $recipe,
             'form' => $form->createView()
         ]);

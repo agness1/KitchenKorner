@@ -14,23 +14,24 @@
         <script src="https://cdn.tailwindcss.com"></script>
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script>
     </head>
-    <body class="">
+    <body>
     {% block header %}
     <header>
-     <nav class="bg-gray-800 p-6">
+     <nav class="bg-orange-500 p-6">
         <div class="container mx-auto flex justify-between items-center">
             <div>
                 <a href="/" class="text-white text-lg font-bold">Kitchen Korner</a>
             </div>
             <div>
                 <ul class="flex space-x-4">
-                {% if app.user %}
-                <li><a href="/user-recipes/{{app.user.id}}" class="text-white hover:text-gray-300">See your recipes</a></li>
-                {% endif %}
-                    <li><a href="/login" class="text-white hover:text-gray-300">Login</a></li>
-                    <li><a href="/logout" class="text-white hover:text-gray-300">Logout</a></li>
-                    <li><a href="/register" class="text-white hover:text-gray-300">Register</a></li>
-                </ul>
+        {% if app.user %}
+            <li><a href="/logout" class="text-white font-medium text-lg hover:text-slate-800 transition-all">Logout</a></li>
+            <li><a href="/user-recipes/{{ app.user.id }}" class="text-white font-medium text-lg hover:text-slate-800 transition-all">See your recipes</a></li>
+        {% else %}
+            <li><a href="/login" class="text-white font-medium text-lg hover:text-slate-800 transition-all">Login</a></li>
+            <li><a href="/register" class="text-white font-medium text-lg hover:text-slate-800 transition-all">Register</a></li>
+        {% endif %}
+    </ul>
             </div>
         </div>
     </nav>

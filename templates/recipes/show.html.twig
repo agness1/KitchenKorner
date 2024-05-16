@@ -2,20 +2,26 @@
 
 {% block body %}
 
-{% for recipe in recipes %}
- <div>
-     <a>
-     <p>{{recipe.name}}</p>
-     <img
-     src="{{ recipe.imagePath }}"
-     alt=""
-     class="shadow-xl rounded-md"
-     />
-     </a>
-     <a href="/recipes/delete/{{recipe.id}}">Delete</a>
-     <a href="/recipes/edit/{{recipe.id}}">Update</a>
- </div>
-
-{% endfor %}
-
+<div class="bg-white">
+    <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+        <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+            {% for recipe in recipes %}
+            <div>
+                <a href="/recipes/{{recipe.id}}" class="group" >
+                 <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
+                     <img
+                     src="{{ recipe.imagePath }}"
+                     alt=""
+                     class="h-full w-full object-cover object-center group-hover:opacity-75"
+                     />
+                 </div>
+                     <p class="mt-4 text-sm text-gray-700">{{recipe.category.getName()}}</p>
+                     <p class="mt-1 text-lg font-medium text-gray-900">{{ recipe.name}}</p>
+                </a>
+                <div class="flex gap-4"><a href="/recipes/edit/{{recipe.id}}" class="text-lime-700 font-bold">Update</a> <a href="/recipes/delete/{{recipe.id}}" class="text-red-800 font-bold">Delete</a></div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 {% endblock %}

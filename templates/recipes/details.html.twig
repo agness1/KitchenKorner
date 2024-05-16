@@ -2,6 +2,24 @@
 
 {% block body %}
 
-<h1>Halo</h1>
+<div class="lg:p-24 p-4 flex flex-col items-center gap-8">
+                 <img
+                 src="{{ recipe.imagePath }}"
+                 alt=""
+                 class="h-1/2 lg:w-1/2 w-11/12 object-cover object-center group-hover:opacity-75 rounded-lg "
+                 />
+             <p class="mt-4 text-sm text-gray-700">{{recipe.category.getName()}}</p>
+             <h1 class="mt-1 text-2xl font-medium text-gray-900">{{ recipe.name}}</h1>
+             <div class="lg:w-1/2 w-10/12">
+             <h3 class="text-center font-bold p-4 text-xl">Ingredients</h3>
+             <p>{{recipe.ingredients}}</p>
+             </div>
+             <div class="lg:w-1/2 w-10/12">
+             <h3 class="text-center font-bold p-4 text-xl">Instruction</h3>
+             <p>{{recipe.instruction}}</p>
+             </div>
+</div>
+
+
 
 {% endblock %}
